@@ -1,0 +1,46 @@
+body {
+    background-image: url('../../images/home_bg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+h2 {
+    text-align: center;
+    color: #ffbb2b;
+}
+
+#click_here {
+    margin-top: 10px;
+    text-align: center;
+    
+}
+
+/*
+.well {
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+   
+}
+*/
+
+.container
+{
+    width: 60%;
+    margin-top: 10px;
+}
+
+label
+{
+    color:#ffbb2b;
+    font-size: 13px;
+    font-weight: 100;
+}
+
+.button
+{
+    
+    width: 100px;
+    float: right;
+    font-size: 13px;
+    
+}
