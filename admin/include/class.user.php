@@ -20,7 +20,7 @@
                 $count_row=$check->num_rows;
                 if($count_row==0)
                 {
-                    $sql1="INSERT INTO manager SET uname='$username', upass='$password', fullname='$name', uemail='$email'";
+                    $sql1="INSERT INTO manager SET uname='$username', upass='password_hash($password)', fullname='$name', uemail='$email'";
                     $result= mysqli_query($this->db,$sql1) or die(mysqli_connect_errno()."Data cannot inserted");
                     return $result;
                 }
@@ -176,12 +176,12 @@
             public function check_login($emailusername,$password)
             {
                 //$password=md5($password);
-                $sql2="SELECT uid from manager WHERE uemail='$emailusername' OR uname='$emailusername' and upass='$password'";
+                $sql2="SELECT uid, upass from manager WHERE uemail='$emailusername' OR uname='$emailusername' and upass='$password'";
                 $result=mysqli_query($this->db,$sql2);
                 $user_data=mysqli_fetch_array($result);
                 $count_row=$result->num_rows;
                 
-                if($count_row==1)
+                if($count_row==1 && password_verify($password,$user_data['upass']))
                 {
                     $_SESSION['login']=true;
                     $_SESSION['uid']=$user_data['uid'];
@@ -203,5 +203,3 @@
                 session_destroy();
             }
         }
-
-?>
